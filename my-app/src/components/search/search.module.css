@@ -1,0 +1,12 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 3.74%;
+}
+
+.input {
+  width: 86.66%;
+  height: 2.4375rem;
+  border: none;
+}
