@@ -22,3 +22,8 @@ code {
 * {
   box-sizing: border-box;
 }
+
+h2,
+h3 {
+  margin: 0;
+}

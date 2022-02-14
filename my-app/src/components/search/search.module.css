@@ -1,3 +1,5 @@
+@value containerWidth from "../../common/size.css";
+
 .container {
   width: 100%;
   display: flex;
@@ -6,7 +8,7 @@
 }
 
 .input {
-  width: 86.66%;
+  width: containerWidth;
   height: 2.4375rem;
   font-size: 1rem;
   border: none;
