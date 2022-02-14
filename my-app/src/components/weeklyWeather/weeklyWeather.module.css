@@ -1,0 +1,11 @@
+@value containerWidth from "../../common/size.css";
+@value weWhite from "../../common/colors.css";
+
+.container {
+  width: containerWidth;
+  height: 54.87%;
+  background: rgba(23, 16, 16, 0.2);
+  border-radius: 40px;
+  color: weWhite;
+  margin-top: 1.75rem;
+}

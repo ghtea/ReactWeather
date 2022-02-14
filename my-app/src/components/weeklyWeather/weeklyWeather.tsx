@@ -1,5 +1,13 @@
 import React from "react";
+import OnedayWeather from "../onedayWeather/onedayWeather";
+import styles from "./weeklyWeather.module.css";
 
-const WeeklyWeather = () => <h1>WeekWeather</h1>;
+const WeeklyWeather = () => {
+  return (
+    <section className={styles.container}>
+      <OnedayWeather />
+    </section>
+  );
+};
 
 export default WeeklyWeather;
