@@ -3,10 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import OpenWeather from "./service/openWeather";
+
+const openWeather = new OpenWeather();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App openWeather={openWeather} />
   </React.StrictMode>,
   document.getElementById("root")
 );
