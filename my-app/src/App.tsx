@@ -12,7 +12,7 @@ function App({ openWeather }: { openWeather: OpenWeather }) {
     <div className="App">
       <section className={styles.container}>
         <Search />
-        <TodayWeather />
+        <TodayWeather openWeather={openWeather} />
         <WeeklyWeather />
       </section>
     </div>
