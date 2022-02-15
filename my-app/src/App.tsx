@@ -6,7 +6,13 @@ import WeeklyWeather from "./components/weeklyWeather/weeklyWeather";
 import OpenWeather from "./service/openWeather";
 
 function App({ openWeather }: { openWeather: OpenWeather }) {
-  openWeather.getTodayWeather();
+  // const showIconByMain = (main: string) => {
+  //   switch (main) {
+  //     case "Clouds": {
+  //       return "cloudy";
+  //     }
+  //   }
+  // };
 
   return (
     <div className="App">
