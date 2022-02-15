@@ -21,7 +21,13 @@ type tempertature = {
 
 type location = string;
 
-const TodayWeather = ({ openWeather }: { openWeather: OpenWeather }) => {
+const TodayWeather = ({
+  openWeather,
+  userLocation,
+}: {
+  openWeather: OpenWeather;
+  userLocation: string;
+}) => {
   // 이거 한 번에 가지고 오고 싶을 땐 어떻게 하지?
   // 🔥 type을 지정해야 .으로 값을 가져올 수 있다.
   const [todayWeather, setTodayWeather] = useState<weather>({
@@ -39,13 +45,13 @@ const TodayWeather = ({ openWeather }: { openWeather: OpenWeather }) => {
         weather: Array<weather>;
         main: tempertature;
         name: string;
-      }>()
+      }>(userLocation)
       .then(({ weather, main, name }) => {
         setTodayWeather(weather[0]);
         setTodayTempertature(main);
         setTodayLocation(name);
       });
-  }, [openWeather]);
+  }, [openWeather, userLocation]);
 
   return (
     <section className={styles.container}>

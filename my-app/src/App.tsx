@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./App.module.css";
 import Search from "./components/search/search";
 import TodayWeather from "./components/todayWeather/todayWeather";
@@ -14,11 +14,16 @@ function App({ openWeather }: { openWeather: OpenWeather }) {
   //   }
   // };
 
+  const [userLocation, setUserLocation] = useState<string>("Seoul");
+  const handleChange = (location: string) => {
+    setUserLocation(location);
+  };
+
   return (
     <div className="App">
       <section className={styles.container}>
-        <Search />
-        <TodayWeather openWeather={openWeather} />
+        <Search handleChange={handleChange} />
+        <TodayWeather openWeather={openWeather} userLocation={userLocation} />
         <WeeklyWeather />
       </section>
     </div>

@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./search.module.css";
 
-const Search = () => {
+const Search = ({ handleChange }: { handleChange: Function }) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const onChange = () => {
+    handleChange(inputRef.current && inputRef.current.value);
+  };
+
   return (
     <section className={styles.container}>
-      <input className={styles.input} type="text" list="location" />
+      <input
+        ref={inputRef}
+        className={styles.input}
+        type="text"
+        placeholder="지역명"
+        list="location"
+        onBlur={onChange}
+      />
       <datalist id="location">
-        <option value="연수구"></option>
-        <option value="중구"></option>
-        <option value="남구"></option>
+        <option value="incheon"></option>
+        <option value="seoul"></option>
+        <option value="jeonju"></option>
       </datalist>
     </section>
   );
