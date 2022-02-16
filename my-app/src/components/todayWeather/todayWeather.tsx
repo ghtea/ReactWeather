@@ -3,6 +3,11 @@ import styles from "./todayWeather.module.css";
 import clear from "../../images/icons/clear.svg";
 import OpenWeather from "../../service/openWeather";
 
+type location = {
+  lat: number;
+  lon: number;
+};
+
 type weather = {
   id: number;
   main: string;
@@ -19,14 +24,12 @@ type tempertature = {
   humidity: number;
 };
 
-type location = string;
-
 const TodayWeather = ({
   openWeather,
   userLocation,
 }: {
   openWeather: OpenWeather;
-  userLocation: string;
+  userLocation: location;
 }) => {
   // 이거 한 번에 가지고 오고 싶을 땐 어떻게 하지?
   // 🔥 type을 지정해야 .으로 값을 가져올 수 있다.
@@ -37,7 +40,7 @@ const TodayWeather = ({
     icon: "04d",
   });
   const [todayTempertature, setTodayTempertature] = useState<tempertature>();
-  const [todayLocation, setTodayLocation] = useState<location>();
+  const [todayLocation, setTodayLocation] = useState<string>();
 
   useEffect(() => {
     openWeather

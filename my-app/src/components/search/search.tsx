@@ -1,11 +1,43 @@
 import React, { useRef } from "react";
+import OpenWeather from "../../service/openWeather";
 import styles from "./search.module.css";
 
-const Search = ({ handleChange }: { handleChange: Function }) => {
+type location = {
+  lat: number;
+  lon: number;
+  country?: string;
+};
+
+const Search = ({
+  openWeather,
+  handleChange,
+}: {
+  openWeather: OpenWeather;
+  handleChange: Function;
+}) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onChange = () => {
-    handleChange(inputRef.current && inputRef.current.value);
+    if (!inputRef.current) return;
+
+    openWeather
+      .getLatAndLon<Array<location>>(inputRef.current.value) //
+      .then((result) => {
+        const koreaLocations = result.map((res) => {
+          if (res.country === "KR") {
+            console.log(res);
+            return res;
+          }
+          return null;
+        });
+
+        if (koreaLocations[0]) {
+          handleChange({
+            lat: koreaLocations[0].lat,
+            lon: koreaLocations[0].lon,
+          });
+        }
+      });
   };
 
   return (

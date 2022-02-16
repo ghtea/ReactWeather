@@ -1,3 +1,8 @@
+type location = {
+    lat: number;
+    lon: number;
+};
+
 class OpenWeather {
     private requestOptions;
 
@@ -9,14 +14,25 @@ class OpenWeather {
         };
     }
 
-    async getTodayWeather<T>(userLocation: string): Promise<T> {
-        return await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${userLocation}&appid=${this.key}&units=metric\n`)
+    async getTodayWeather<T>(userLocation: location): Promise<T> {
+        return await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${userLocation.lat}&lon=${userLocation.lon}&appid=${this.key}&units=metric\n`)
             .then(response => {
                 if (!response.ok) {
                     alert(`Please select a valid value.`);
-                    throw new Error(response.statusText)
+                    throw new Error(response.statusText);
                 }
-                return response.json() as Promise<T>
+                return response.json() as Promise<T>;
+            })
+    }
+
+    async getLatAndLon<T>(userLocation: string): Promise<T> {
+        return await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${userLocation}&limit=5&appid=${this.key}`)//
+            .then(response => {
+                if (!response.ok) {
+                    alert(`Please input a valid location.`);
+                    throw new Error(response.statusText);
+                }
+                return response.json() as Promise<T>;
             })
     }
 }
