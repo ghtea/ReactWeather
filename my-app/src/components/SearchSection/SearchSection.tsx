@@ -1,47 +1,53 @@
-import React, { useRef, FunctionComponent } from "react";
+import React, { useRef, FunctionComponent, useState, useCallback } from "react";
 import {OpenWeather} from "../../service/openWeather";
 import styles from "./SearchSection.module.css";
 
-type location = {
-  lat: number;
-  lon: number;
-  country?: string;
-};
+
+type OpenWeatherLocation = {
+  name: string;
+  local_names: Record<string, string>
+  lat: number
+  lon: number
+  country: string
+}
 
 export type SearchSectionProps = {
   openWeather: OpenWeather;
-  handleChange: Function;
+  onChange: Function;
 }
 
 export const SearchSection: FunctionComponent<SearchSectionProps> = ({
   openWeather,
-  handleChange,
+  onChange,
 }) => {
+  const [locationOptions, setLocationOptions] = useState<OpenWeatherLocation[]>([])
+
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const onChange = () => {
+
+  const handleBlur = useCallback(() => {
     if (!inputRef.current) return;
 
     openWeather
-      .getLatAndLon<Array<location>>(inputRef.current.value) //
+      .getLatAndLon<OpenWeatherLocation[]>(inputRef.current.value) //
       .then((result) => {
-        const koreaLocations = result.map((res) => {
-          // console.log(res);
-          if (res.country === "KR") {
-            return res;
-          }
-          return null;
-        });
-
+        const koreaLocations = result.filter(item => item.country === "KR")
+        
         // option을 다이나믹하게 만들기
-        if (koreaLocations[0]) {
-          handleChange({
-            lat: koreaLocations[0].lat,
-            lon: koreaLocations[0].lon,
-          });
-        }
+        setLocationOptions(koreaLocations)
       });
-  };
+  },[openWeather]);
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = useCallback((event)=>{
+    const selectedLocation = locationOptions.find(item => item.name === event.target.value)
+
+    if (selectedLocation){
+      onChange({
+        lat: selectedLocation.lat,
+        lon: selectedLocation.lon
+      })
+    }
+  },[locationOptions, onChange])
 
   return (
     <section className={styles.container}>
@@ -51,12 +57,18 @@ export const SearchSection: FunctionComponent<SearchSectionProps> = ({
         type="text"
         placeholder="city"
         list="location"
-        onBlur={onChange}
+        onBlur={handleBlur}
+        onChange={handleChange}
       />
       <datalist id="location">
-        <option value="incheon"></option>
-        <option value="seoul"></option>
-        <option value="jeonju"></option>
+        {locationOptions.map(item => (
+          <option 
+            key={`location-option-${item.lat}-${item.lon}`}
+            value={item.name}
+          >
+            {item.name}
+          </option>
+        ))}
       </datalist>
     </section>
   );

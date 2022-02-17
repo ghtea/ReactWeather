@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {OpenWeather} from "./service/openWeather";
 
-const openWeather = new OpenWeather(process.env.REACT_APP_OPENWEATHER_APPID!);
+const openWeather = new OpenWeather(process.env.REACT_APP_OPENWEATHER_APPID || "");
 
 ReactDOM.render(
   <React.StrictMode>

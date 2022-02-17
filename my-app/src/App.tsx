@@ -18,10 +18,9 @@ import thunderstorm from "../src/images/icons/weather/thunderstorm.svg";
 import mist from "../src/images/icons/weather/mist.svg";
 
 // type을 props로 전달할 수 없나?
-type location = {
+type UserLocation = {
   lat: number;
   lon: number;
-  country?: string;
 };
 
 const getIconByDescription = (description: string): string => {
@@ -49,7 +48,7 @@ const getIconByDescription = (description: string): string => {
 };
 
 function App({ openWeather }: { openWeather: OpenWeather }) {
-  const [userLocation, setUserLocation] = useState<location>({
+  const [userLocation, setUserLocation] = useState<UserLocation>({
     // seoul
     lat: 37.5666791,
     lon: 126.9782914,
@@ -57,7 +56,7 @@ function App({ openWeather }: { openWeather: OpenWeather }) {
 
   const [background, setBackground] = useState<string>();
 
-  const handleChange = (location: location) => {
+  const handleChange = (location: UserLocation) => {
     setUserLocation(location);
   };
 
@@ -80,7 +79,7 @@ function App({ openWeather }: { openWeather: OpenWeather }) {
   return (
     <div className="App">
       <section className={`${styles.container} ${background}`}>
-        <SearchSection openWeather={openWeather} handleChange={handleChange} />
+        <SearchSection openWeather={openWeather} onChange={handleChange} />
         <TodayWeather
           openWeather={openWeather}
           getIconByDescription={getIconByDescription}
