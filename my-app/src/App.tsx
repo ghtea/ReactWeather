@@ -62,7 +62,7 @@ function App({ openWeather }: { openWeather: OpenWeather }) {
   };
 
   const handleBackground = (description: string): void => {
-    if (description.includes("snow")) {
+    if (description.includes("clear")) {
       setBackground(styles.sunny);
       return;
     } else if (description.includes("snow")) {
