@@ -148,7 +148,7 @@ const WeeklyWeather = ({
         daily: Array<daily>;
       }>(userLocation) //
       .then(({ daily }) => {
-        setNextDaysForcast(daily.slice(0, NEXT_DAYS));
+        setNextDaysForcast(daily.slice(1, NEXT_DAYS + 1));
       });
   }, [openWeather, userLocation]);
 

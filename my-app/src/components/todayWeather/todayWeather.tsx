@@ -26,10 +26,12 @@ type tempertature = {
 const TodayWeather = ({
   openWeather,
   getIconByDescription,
+  handleBackground,
   userLocation,
 }: {
   openWeather: OpenWeather;
   getIconByDescription: Function;
+  handleBackground: Function;
   userLocation: location;
 }) => {
   // 이거 한 번에 가지고 오고 싶을 땐 어떻게 하지?
@@ -61,8 +63,9 @@ const TodayWeather = ({
         setTodayWeather(weather[0]);
         setTodayTempertature(main);
         setTodayLocation(name);
+        handleBackground(weather[0].description);
       });
-  }, [openWeather, userLocation]);
+  }, [openWeather, userLocation, handleBackground]);
 
   return (
     <section className={styles.container}>

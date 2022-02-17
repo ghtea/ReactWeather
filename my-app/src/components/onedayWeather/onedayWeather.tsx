@@ -4,9 +4,10 @@ import styles from "./onedayWeather.module.css";
 import hotIcon from "../../images/icons/hot.svg";
 import coldIcon from "../../images/icons/cold.svg";
 
-function getUnixTimeStamp(dt: number): number {
-  let date = new Date(dt * 1000);
-  return date.getDate();
+function getUnixTimeStamp(dt: number): string {
+  const date = new Date(dt * 1000).getDate();
+  const strDate = date / 10 === 0 ? "0" + date : date.toString();
+  return strDate;
 }
 
 const OnedayWeather = ({
@@ -30,12 +31,16 @@ const OnedayWeather = ({
         src={getIconByDescription(description)}
         alt="weather icon"
       />
-      <img className={styles.tempImg} src={hotIcon} alt="hot icon" />
-      <span className={`${styles.tempSpan} ${styles.tempHot}`}>
-        {maxTemp.toFixed(0)}
-      </span>
-      <img className={styles.tempImg} src={coldIcon} alt="cold icon" />
-      <span className={styles.tempSpan}>{minTemp.toFixed(0)}</span>
+      <div className={styles.temp}>
+        <img className={styles.tempImg} src={hotIcon} alt="hot icon" />
+        <span className={`${styles.tempSpan} ${styles.tempHot}`}>
+          {maxTemp.toFixed(0)}
+        </span>
+      </div>
+      <div className={styles.temp}>
+        <img className={styles.tempImg} src={coldIcon} alt="cold icon" />
+        <span className={styles.tempSpan}>{minTemp.toFixed(0)}</span>
+      </div>
     </section>
   );
 };

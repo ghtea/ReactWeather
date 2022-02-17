@@ -7,13 +7,16 @@
 
 .weather {
   height: 100%;
-  margin: 0 0.8rem 0 3rem;
+  margin: 0 0.8rem 0 2.2rem;
+}
+
+.temp {
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
 }
 
 .tempImg {
   height: 100%;
-}
-
-.tempHot {
-  margin-right: 1rem;
 }

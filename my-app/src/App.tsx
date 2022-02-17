@@ -5,6 +5,8 @@ import TodayWeather from "./components/todayWeather/todayWeather";
 import WeeklyWeather from "./components/weeklyWeather/weeklyWeather";
 import OpenWeather from "./service/openWeather";
 
+// background
+
 // icons
 import brokenClouds from "../src/images/icons/weather/brokenClouds.svg";
 import clearDay from "../src/images/icons/weather/clearDay.svg";
@@ -53,17 +55,36 @@ function App({ openWeather }: { openWeather: OpenWeather }) {
     lon: 126.9782914,
   });
 
+  const [background, setBackground] = useState<string>();
+
   const handleChange = (location: location) => {
     setUserLocation(location);
   };
 
+  const handleBackground = (description: string): void => {
+    if (description.includes("snow")) {
+      setBackground(styles.sunny);
+      return;
+    } else if (description.includes("snow")) {
+      setBackground(styles.snowing);
+      return;
+    } else if (description.includes("thunderstorm" || "drizzle" || "rain")) {
+      setBackground(styles.rainy);
+      return;
+    } else {
+      setBackground(styles.cloudy);
+      return;
+    }
+  };
+
   return (
     <div className="App">
-      <section className={styles.container}>
+      <section className={`${styles.container} ${background}`}>
         <Search openWeather={openWeather} handleChange={handleChange} />
         <TodayWeather
           openWeather={openWeather}
           getIconByDescription={getIconByDescription}
+          handleBackground={handleBackground}
           userLocation={userLocation}
         />
         <WeeklyWeather
