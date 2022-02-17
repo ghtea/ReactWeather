@@ -37,9 +37,11 @@ const NEXT_DAYS = 5;
 
 const WeeklyWeather = ({
   openWeather,
+  getIconByDescription,
   userLocation,
 }: {
   openWeather: OpenWeather;
+  getIconByDescription: Function;
   userLocation: location;
 }) => {
   const [nextDaysForcast, setNextDaysForcast] = useState<Array<daily>>([
@@ -157,10 +159,11 @@ const WeeklyWeather = ({
           return (
             <OnedayWeather
               key={dayForcast.dt}
+              getIconByDescription={getIconByDescription}
               dt={dayForcast.dt}
               minTemp={dayForcast.temp.min}
               maxTemp={dayForcast.temp.max}
-              icon={dayForcast.weather[0].icon}
+              description={dayForcast.weather[0].description}
             />
           );
         })}

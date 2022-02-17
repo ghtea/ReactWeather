@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./onedayWeather.module.css";
+
 import hotIcon from "../../images/icons/hot.svg";
 import coldIcon from "../../images/icons/cold.svg";
 
@@ -9,22 +10,24 @@ function getUnixTimeStamp(dt: number): number {
 }
 
 const OnedayWeather = ({
+  getIconByDescription,
   dt,
   minTemp,
   maxTemp,
-  icon,
+  description,
 }: {
+  getIconByDescription: Function;
   dt: number;
   minTemp: number;
   maxTemp: number;
-  icon: string;
+  description: string;
 }) => {
   return (
     <section className={styles.content}>
       <span className={styles.day}>{getUnixTimeStamp(dt)}일</span>
       <img
         className={styles.weather}
-        src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+        src={getIconByDescription(description)}
         alt="weather icon"
       />
       <img className={styles.tempImg} src={hotIcon} alt="hot icon" />

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "./todayWeather.module.css";
-import clear from "../../images/icons/clear.svg";
 import OpenWeather from "../../service/openWeather";
 
 type location = {
@@ -26,9 +25,11 @@ type tempertature = {
 
 const TodayWeather = ({
   openWeather,
+  getIconByDescription,
   userLocation,
 }: {
   openWeather: OpenWeather;
+  getIconByDescription: Function;
   userLocation: location;
 }) => {
   // 이거 한 번에 가지고 오고 싶을 땐 어떻게 하지?
@@ -67,7 +68,7 @@ const TodayWeather = ({
     <section className={styles.container}>
       <img
         className={styles.img}
-        src={`http://openweathermap.org/img/wn/${todayWeather.icon}@2x.png`}
+        src={getIconByDescription(todayWeather.description)}
         alt="today icon"
       />
       <div className={styles.text}>
