@@ -140,15 +140,15 @@ const WeeklyWeather = ({
     },
   ]);
 
-  // useEffect(() => {
-  //   openWeather
-  //     .getWeeklyWeather<{
-  //       daily: Array<daily>;
-  //     }>(userLocation) //
-  //     .then(({ daily }) => {
-  //       setNextDaysForcast(daily.slice(0, NEXT_DAYS));
-  //     });
-  // }, [openWeather, userLocation]);
+  useEffect(() => {
+    openWeather
+      .getWeeklyWeather<{
+        daily: Array<daily>;
+      }>(userLocation) //
+      .then(({ daily }) => {
+        setNextDaysForcast(daily.slice(0, NEXT_DAYS));
+      });
+  }, [openWeather, userLocation]);
 
   return (
     <section className={styles.container}>

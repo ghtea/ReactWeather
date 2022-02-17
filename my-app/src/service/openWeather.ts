@@ -37,7 +37,7 @@ class OpenWeather {
     }
 
     async getWeeklyWeather<T>(userLocation: location): Promise<T> {
-        return await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${userLocation.lat}&lon=-${userLocation.lon}&exclude=current,minutely,hourly,alerts&units=metric&appid=${this.key}`)
+        return await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${userLocation.lat}&lon=${userLocation.lon}&exclude=current,minutely,hourly,alerts&units=metric&appid=${this.key}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(response.statusText);
