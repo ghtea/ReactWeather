@@ -4,8 +4,13 @@
 .container {
   width: containerWidth;
   height: 54.87%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
   background: rgba(23, 16, 16, 0.2);
   border-radius: 40px;
   color: weWhite;
+  padding: 2.5rem;
   margin-top: 1.75rem;
 }

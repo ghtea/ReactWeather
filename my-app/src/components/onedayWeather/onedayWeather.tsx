@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./onedayWeather.module.css";
+import hotIcon from "../../images/icons/hot.svg";
+import coldIcon from "../../images/icons/cold.svg";
 
 function getUnixTimeStamp(dt: number): number {
   let date = new Date(dt * 1000);
@@ -25,9 +27,11 @@ const OnedayWeather = ({
         src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
         alt="weather icon"
       />
-      <img className={styles.tempImg} src="" alt="" />
-      <span className={styles.tempSpan}>{maxTemp.toFixed(0)}</span>
-      <img className={styles.tempImg} src="" alt="" />
+      <img className={styles.tempImg} src={hotIcon} alt="hot icon" />
+      <span className={`${styles.tempSpan} ${styles.tempHot}`}>
+        {maxTemp.toFixed(0)}
+      </span>
+      <img className={styles.tempImg} src={coldIcon} alt="cold icon" />
       <span className={styles.tempSpan}>{minTemp.toFixed(0)}</span>
     </section>
   );
