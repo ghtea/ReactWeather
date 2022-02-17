@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, FunctionComponent } from "react";
 import OpenWeather from "../../service/openWeather";
 import styles from "./SearchSection.module.css";
 
@@ -8,12 +8,14 @@ type location = {
   country?: string;
 };
 
-export const SearchSection = ({
-  openWeather,
-  handleChange,
-}: {
+export type SearchSectionProps = {
   openWeather: OpenWeather;
   handleChange: Function;
+}
+
+export const SearchSection: FunctionComponent<SearchSectionProps> = ({
+  openWeather,
+  handleChange,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
