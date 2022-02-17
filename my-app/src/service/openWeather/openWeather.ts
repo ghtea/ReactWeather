@@ -1,9 +1,6 @@
-type location = {
-    lat: number;
-    lon: number;
-};
+import {Location} from "./openWeather.types"
 
-class OpenWeather {
+export class OpenWeather {
     private requestOptions;
 
     constructor(private key: string) {
@@ -11,10 +8,10 @@ class OpenWeather {
         this.requestOptions = {
             method: 'GET',
             redirect: 'follow'
-        };
+        }; 
     }
 
-    async getTodayWeather<T>(userLocation: location): Promise<T> {
+    async getTodayWeather<T>(userLocation: Location): Promise<T> {
         return await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${userLocation.lat}&lon=${userLocation.lon}&appid=${this.key}&units=metric`)
             .then(response => {
                 if (!response.ok) {
@@ -36,7 +33,7 @@ class OpenWeather {
             })
     }
 
-    async getWeeklyWeather<T>(userLocation: location): Promise<T> {
+    async getWeeklyWeather<T>(userLocation: Location): Promise<T> {
         return await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${userLocation.lat}&lon=${userLocation.lon}&exclude=current,minutely,hourly,alerts&units=metric&appid=${this.key}`)
             .then(response => {
                 if (!response.ok) {
@@ -46,5 +43,3 @@ class OpenWeather {
             })
     }
 }
-
-export default OpenWeather;

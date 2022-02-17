@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import OpenWeather from "../../service/openWeather";
+import {OpenWeather} from "../../service/openWeather";
 import {OnedayWeather} from "../OnedayWeather";
 import styles from "./WeeklyWeather.module.css";
 

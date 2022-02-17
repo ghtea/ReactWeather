@@ -1,27 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./TodayWeather.module.css";
-import OpenWeather from "../../service/openWeather";
+import {OpenWeather, Location, Weather, Tempertature} from "../../service/openWeather";
 
-type location = {
-  lat: number;
-  lon: number;
-};
-
-type weather = {
-  id: number;
-  main: string;
-  description: string;
-  icon: string;
-};
-
-type tempertature = {
-  temp: number;
-  feels_like: number;
-  temp_min: number;
-  temp_max: number;
-  pressure: number;
-  humidity: number;
-};
 
 export const TodayWeather = ({
   openWeather,
@@ -32,17 +12,17 @@ export const TodayWeather = ({
   openWeather: OpenWeather;
   getIconByDescription: Function;
   handleBackground: Function;
-  userLocation: location;
+  userLocation: Location;
 }) => {
   // 이거 한 번에 가지고 오고 싶을 땐 어떻게 하지?
   // 🔥 type을 지정해야 .으로 값을 가져올 수 있다.
-  const [todayWeather, setTodayWeather] = useState<weather>({
+  const [todayWeather, setTodayWeather] = useState<Weather>({
     id: 803,
     main: "Clouds",
     description: "broken clouds",
     icon: "04d",
   });
-  const [todayTempertature, setTodayTempertature] = useState<tempertature>({
+  const [todayTempertature, setTodayTempertature] = useState<Tempertature>({
     temp: 20,
     feels_like: 20,
     temp_min: 10,
@@ -55,8 +35,8 @@ export const TodayWeather = ({
   useEffect(() => {
     openWeather
       .getTodayWeather<{
-        weather: Array<weather>;
-        main: tempertature;
+        weather: Array<Weather>;
+        main: Tempertature;
         name: string;
       }>(userLocation)
       .then(({ weather, main, name }) => {

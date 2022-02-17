@@ -1,5 +1,5 @@
 import React, { useRef, FunctionComponent } from "react";
-import OpenWeather from "../../service/openWeather";
+import {OpenWeather} from "../../service/openWeather";
 import styles from "./SearchSection.module.css";
 
 type location = {

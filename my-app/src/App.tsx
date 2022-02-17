@@ -3,7 +3,7 @@ import styles from "./App.module.css";
 import {SearchSection} from "./components/SearchSection";
 import {TodayWeather} from "./components/TodayWeather";
 import {WeeklyWeather} from "./components/WeeklyWeather";
-import OpenWeather from "./service/openWeather";
+import {OpenWeather} from "./service/openWeather";
 
 // background
 
