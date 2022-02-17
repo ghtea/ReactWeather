@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import OpenWeather from "../../service/openWeather";
-import styles from "./Search.module.css";
+import styles from "./SearchSection.module.css";
 
 type location = {
   lat: number;
@@ -8,7 +8,7 @@ type location = {
   country?: string;
 };
 
-export const Search = ({
+export const SearchSection = ({
   openWeather,
   handleChange,
 }: {

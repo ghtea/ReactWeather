@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./App.module.css";
-import {Search} from "./components/Search";
+import {SearchSection} from "./components/SearchSection";
 import {TodayWeather} from "./components/TodayWeather";
 import {WeeklyWeather} from "./components/WeeklyWeather";
 import OpenWeather from "./service/openWeather";
@@ -80,7 +80,7 @@ function App({ openWeather }: { openWeather: OpenWeather }) {
   return (
     <div className="App">
       <section className={`${styles.container} ${background}`}>
-        <Search openWeather={openWeather} handleChange={handleChange} />
+        <SearchSection openWeather={openWeather} handleChange={handleChange} />
         <TodayWeather
           openWeather={openWeather}
           getIconByDescription={getIconByDescription}
