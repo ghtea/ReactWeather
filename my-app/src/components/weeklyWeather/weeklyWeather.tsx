@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import OpenWeather from "../../service/openWeather";
-import OnedayWeather from "../onedayWeather/onedayWeather";
-import styles from "./weeklyWeather.module.css";
+import {OnedayWeather} from "../OnedayWeather";
+import styles from "./WeeklyWeather.module.css";
 
 type location = {
   lat: number;
@@ -35,7 +35,7 @@ type daily = {
 
 const NEXT_DAYS = 5;
 
-const WeeklyWeather = ({
+export const WeeklyWeather = ({
   openWeather,
   getIconByDescription,
   userLocation,
@@ -170,5 +170,3 @@ const WeeklyWeather = ({
     </section>
   );
 };
-
-export default WeeklyWeather;

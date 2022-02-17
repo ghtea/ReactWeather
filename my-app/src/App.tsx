@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./App.module.css";
-import Search from "./components/search/search";
-import TodayWeather from "./components/todayWeather/todayWeather";
-import WeeklyWeather from "./components/weeklyWeather/weeklyWeather";
+import {Search} from "./components/Search";
+import {TodayWeather} from "./components/TodayWeather";
+import {WeeklyWeather} from "./components/WeeklyWeather";
 import OpenWeather from "./service/openWeather";
 
 // background

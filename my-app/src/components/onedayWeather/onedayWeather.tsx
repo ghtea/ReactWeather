@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./onedayWeather.module.css";
+import styles from "./OnedayWeather.module.css";
 
 import hotIcon from "../../images/icons/hot.svg";
 import coldIcon from "../../images/icons/cold.svg";
@@ -10,7 +10,7 @@ function getUnixTimeStamp(dt: number): string {
   return strDate;
 }
 
-const OnedayWeather = ({
+export const OnedayWeather = ({
   getIconByDescription,
   dt,
   minTemp,
@@ -44,5 +44,3 @@ const OnedayWeather = ({
     </section>
   );
 };
-
-export default OnedayWeather;

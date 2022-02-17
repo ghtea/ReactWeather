@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "./todayWeather.module.css";
+import styles from "./TodayWeather.module.css";
 import OpenWeather from "../../service/openWeather";
 
 type location = {
@@ -23,7 +23,7 @@ type tempertature = {
   humidity: number;
 };
 
-const TodayWeather = ({
+export const TodayWeather = ({
   openWeather,
   getIconByDescription,
   handleBackground,
@@ -87,5 +87,3 @@ const TodayWeather = ({
     </section>
   );
 };
-
-export default TodayWeather;
