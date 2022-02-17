@@ -65,7 +65,7 @@ const TodayWeather = ({
         setTodayLocation(name);
         handleBackground(weather[0].description);
       });
-  }, [openWeather, userLocation, handleBackground]);
+  }, [openWeather, userLocation]);
 
   return (
     <section className={styles.container}>

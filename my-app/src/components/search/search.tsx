@@ -24,8 +24,8 @@ const Search = ({
       .getLatAndLon<Array<location>>(inputRef.current.value) //
       .then((result) => {
         const koreaLocations = result.map((res) => {
+          // console.log(res);
           if (res.country === "KR") {
-            console.log(res);
             return res;
           }
           return null;
@@ -47,7 +47,7 @@ const Search = ({
         ref={inputRef}
         className={styles.input}
         type="text"
-        placeholder="지역명"
+        placeholder="city"
         list="location"
         onBlur={onChange}
       />
