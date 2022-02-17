@@ -42,19 +42,19 @@ const TodayWeather = ({
   const [todayTempertature, setTodayTempertature] = useState<tempertature>();
   const [todayLocation, setTodayLocation] = useState<string>();
 
-  useEffect(() => {
-    openWeather
-      .getTodayWeather<{
-        weather: Array<weather>;
-        main: tempertature;
-        name: string;
-      }>(userLocation)
-      .then(({ weather, main, name }) => {
-        setTodayWeather(weather[0]);
-        setTodayTempertature(main);
-        setTodayLocation(name);
-      });
-  }, [openWeather, userLocation]);
+  // useEffect(() => {
+  //   openWeather
+  //     .getTodayWeather<{
+  //       weather: Array<weather>;
+  //       main: tempertature;
+  //       name: string;
+  //     }>(userLocation)
+  //     .then(({ weather, main, name }) => {
+  //       setTodayWeather(weather[0]);
+  //       setTodayTempertature(main);
+  //       setTodayLocation(name);
+  //     });
+  // }, [openWeather, userLocation]);
 
   return (
     <section className={styles.container}>

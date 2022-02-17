@@ -5,6 +5,7 @@ import TodayWeather from "./components/todayWeather/todayWeather";
 import WeeklyWeather from "./components/weeklyWeather/weeklyWeather";
 import OpenWeather from "./service/openWeather";
 
+// type을 props로 전달할 수 없나?
 type location = {
   lat: number;
   lon: number;
@@ -12,17 +13,10 @@ type location = {
 };
 
 function App({ openWeather }: { openWeather: OpenWeather }) {
-  // const showIconByMain = (main: string) => {
-  //   switch (main) {
-  //     case "Clouds": {
-  //       return "cloudy";
-  //     }
-  //   }
-  // };
-
   const [userLocation, setUserLocation] = useState<location>({
-    lat: 0,
-    lon: 0,
+    // seoul
+    lat: 37.5666791,
+    lon: 126.9782914,
   });
 
   const handleChange = (location: location) => {
@@ -34,7 +28,7 @@ function App({ openWeather }: { openWeather: OpenWeather }) {
       <section className={styles.container}>
         <Search openWeather={openWeather} handleChange={handleChange} />
         <TodayWeather openWeather={openWeather} userLocation={userLocation} />
-        <WeeklyWeather />
+        <WeeklyWeather openWeather={openWeather} userLocation={userLocation} />
       </section>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import OpenWeather from "../../service/openWeather";
 import styles from "./search.module.css";
 
@@ -31,6 +31,7 @@ const Search = ({
           return null;
         });
 
+        // option을 다이나믹하게 만들기
         if (koreaLocations[0]) {
           handleChange({
             lat: koreaLocations[0].lat,
